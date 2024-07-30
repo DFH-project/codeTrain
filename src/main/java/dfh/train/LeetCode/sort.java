@@ -49,10 +49,5 @@ public class sort {
                 sort[p1+p2]=nums2[p2];
             }
         }
-
     }
-
-
-
-
 }
