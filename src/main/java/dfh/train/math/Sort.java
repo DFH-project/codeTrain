@@ -94,7 +94,8 @@ public class Sort {
 
     public static void main(String[] args) {
         Sort sort = new Sort();
-        sort.sort4();
+        sort.sort5();
+        System.out.println(Arrays.toString(nums));
     }
 
     // 快速排序
@@ -109,18 +110,28 @@ public class Sort {
             quickSort(nums, index + 1, right);
         }
     }
-    private  int  quickMerge(int[] nums, int left, int right) {
-        int key = nums[right];
-        int i = left;
-        while (i < right) {
-            if (nums[i] > key) {
-               int temp = nums[i];
-               nums[i] = nums[right];
-               nums[right] = temp;
-               right--;
+    private  int  quickMerge(int[] arr, int low, int high) {
+        int pivot = arr[high]; // 设定基准值为子数组的最后一个元素
+        int i = (low - 1); // 小于基准值的元素的索引
+
+        for (int j = low; j <= high - 1; j++) {
+            // 如果当前元素小于或等于基准值
+            if (arr[j] <= pivot) {
+                i++;
+
+                // 交换 arr[i] 和 arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
-        return 0;
+
+        // 交换 arr[i+1] 和基准值 pivot
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
     }
 
 }
